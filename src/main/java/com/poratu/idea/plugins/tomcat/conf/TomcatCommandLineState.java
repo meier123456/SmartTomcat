@@ -120,9 +120,10 @@ public class TomcatCommandLineState extends JavaCommandLineState {
 
             // Copy the Tomcat configuration files to the working directory
             Path confPath = catalinaBase.resolve("conf");
-            FileUtil.delete(confPath);
-            FileUtil.createDirectory(confPath.toFile());
-            FileUtil.copyDir(tomcatInstallationPath.resolve("conf").toFile(), confPath.toFile());
+            if(!Files.exists(confPath)) {
+                FileUtil.createDirectory(confPath.toFile());
+                FileUtil.copyDir(tomcatInstallationPath.resolve("conf").toFile(), confPath.toFile());
+            }
             // create the temp folder
             FileUtil.createDirectory(catalinaBase.resolve("temp").toFile());
 

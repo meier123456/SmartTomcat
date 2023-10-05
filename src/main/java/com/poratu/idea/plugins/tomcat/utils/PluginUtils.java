@@ -116,9 +116,9 @@ public final class PluginUtils {
     }
 
     public static Path getTomcatLogsDirPath(TomcatRunConfiguration configuration) {
-        Path catalinaBase = getCatalinaBase(configuration);
-        if (catalinaBase != null) {
-            return catalinaBase.resolve("logs");
+        Path workingDir = getCatalinaBase(configuration);
+        if (workingDir != null) {
+            return workingDir.resolve("logs");
         }
         return null;
     }
